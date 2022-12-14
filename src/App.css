@@ -1,0 +1,208 @@
+/* Resets */
+h1, h2, h3, h4, h5, h6, p {
+    margin: 0;
+    padding: 0;
+}
+
+/* Global styles */
+:root {
+    --text-color-primary: #000;
+    --text-color-secondary: rgb(75, 72, 72);
+    --primary-bg-color: #faf9f3;
+    --secondary-bg-color: #fff;
+    --third-bg-color: #eeeee2;
+    
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--primary-bg-color);
+    color: var(--text-color-primary);
+}
+
+a {
+    text-decoration: none;
+}
+
+a {
+    color: var(--text-color-primary);
+}
+
+h1 {
+    font-size: 4rem;
+}
+
+h2 {
+    font-size: 2.5rem;
+}
+
+h3 {
+    font-size: 1.8rem;
+}
+
+ul, li {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+/* Custom classes */
+
+.bold {
+    font-weight: 600;
+}
+
+.border-bottom {
+    border-bottom: 1.5px solid black;
+}
+
+.flex-row {
+    display: flex;
+}
+
+.flex-column {
+    display: flex;
+    flex-direction: column;
+}
+
+.flex-center {
+    justify-content: center;
+    align-items: center;
+}
+
+.flex-gap-1 {
+    gap: 6.5rem;
+}
+
+.font-size-1 {
+    font-size: 1.1rem;
+}
+
+.font-size-2 {
+    font-size: 1.6rem;
+}
+
+.grid {
+    display: grid;
+}
+
+.grid-center {
+    justify-items: center;
+    align-content: center;
+}
+
+.margin-bottom-1 {
+    margin-bottom: 1.5rem;
+}
+
+.padding-all-0 {
+    padding: 0.5rem;
+}
+.padding-all-1 {
+    padding: 1.5rem;
+}
+
+.padding-all-2 {
+    padding: 2.2rem;
+}
+
+.padding-bottom-1 {
+    padding-bottom: 1.5rem;
+}
+
+.padding-lr-1 {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+}
+
+.padding-lr-2 {
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+}
+
+.padding-lr-3 {
+    padding-left: 4rem;
+    padding-right: 4rem;
+}
+
+.padding-lr-4 {
+    padding-left: 6rem;
+    padding-right: 6rem;
+}
+
+.padding-lr-5 {
+    padding-left: 13rem;
+    padding-right: 13rem;
+}
+
+.padding-tb-1 {
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+}
+
+.padding-tb-2 {
+    padding-top: 2.5rem;
+    padding-bottom: 2.5rem;
+}
+
+.secondary-text-color {
+    color: var(--text-color-secondary);
+}
+
+.jc-space-between {
+    justify-content: space-between;
+    align-items: center;
+}
+/* ^ Custom classes ^ */
+
+/* Page Styles */
+
+/* Header */
+header {
+    font-family: Tahoma;
+}
+
+header h1 {
+    letter-spacing: 4.5px;
+}
+
+/* ^ Header ^ */
+
+/* Home page */
+.blog-container {
+    background-color: var(--primary-bg-color);
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    row-gap: 1.8rem;
+}
+
+/* ^ Home page ^ */
+
+/* Mini blog containers */
+
+.blog {
+    background-color: var(--secondary-bg-color);
+    border-radius: 10px;
+    box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.8);
+    width: 250px;
+    height: 200px;
+}
+
+/* Individual Blog page */
+
+.blog-post {
+    border: 1.5px solid black;
+    border-radius: 15px;
+    background-color: var(--secondary-bg-color);
+    width: 800px;
+}
+
+.blog-main {
+    border-bottom: 1px solid gray;
+}
+
+.comment {
+    background-color: var(--third-bg-color);
+    border-radius: 20px;
+    min-width: 650px;
+}
+
