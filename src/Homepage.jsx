@@ -33,4 +33,4 @@ function Homepage() {
   )
 }
 
-export default App
+export default Homepage
