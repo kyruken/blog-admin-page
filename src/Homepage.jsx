@@ -1,6 +1,6 @@
 import Blog from './components/blog';
 import { useState, useEffect } from 'react';
-
+import { Link } from 'react-router-dom';
 import './App.css';
 
 function Homepage(props) {
@@ -14,15 +14,17 @@ function Homepage(props) {
     }, [])
 
     const blogElements = blogs.map(blog => {
-        return <Blog
-            body={blog.body}
-            comments={blog.comments}
-            isPublished={blog.isPublished}
-            title={blog.title}
-            key={blog._id}
-            id={blog._id}
-        >
-        </Blog>
+        return <Link to={`${blog._id}`}>
+        <Blog
+          body={blog.body}
+          comments={blog.comments}
+          isPublished={blog.isPublished}
+          title={blog.title}
+          key={blog._id}
+          id={blog._id}
+          >
+          </Blog>
+      </Link>
     })
 
     return (
