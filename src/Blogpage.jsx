@@ -5,28 +5,31 @@ import Comment from './components/comment';
 export default function Blogpage() {
     
     //useParams allows us to grab url params
-    const id = useParams().postId;
+    const id = useParams().blogId;
     const [blog, setBlog] = React.useState([]);
     const [comments, setComments] = React.useState([]);
 
-    //Using reverse method to show most recent comment at top aka end of array
-    // React.useEffect(() => {
-    //     Promise.all([
-    //         fetch(`http://localhost:3000/posts/${id}`)
-    //         .then(res => res.json()),
-    //         fetch(`http://localhost:3000/posts/${id}/comments`)
-    //         .then(res => res.json())
-    //     ]).then(data => {
-    //         setBlog(data[0].post);
-    //         setComments(data[1].comments.reverse());
-    //     })
-    // }, [])
+    // Using reverse method to show most recent comment at top aka end of array
+    React.useEffect(() => {
+        Promise.all([
+            fetch(`http://localhost:3000/posts/${id}`)
+            .then(res => res.json()),
+            fetch(`http://localhost:3000/posts/${id}/comments`)
+            .then(res => res.json())
+        ]).then(data => {
+            setBlog(data[0].post);
+            setComments(data[1].comments.reverse());
+        })
+    }, [])
+    
     const commentElements = comments.map(comment => {
         return <Comment 
             comment={comment.comment}
             username={comment.username}
             timestamp={comment.timestamp}
             key={comment._id}
+            id={comment._id}
+            blogId={id}
         />
     }, [])
 
