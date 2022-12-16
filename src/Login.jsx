@@ -35,7 +35,7 @@ function Login() {
       url: 'http://localhost:3000/api/login'
     }).then(data => setToken(data.data.token));
   }
-  console.log(token);
+
   return (
     <div className="App">
       {!loginSuccess && 
@@ -43,7 +43,7 @@ function Login() {
         <h1>Login</h1>
         <input type='text' name='username' placeholder="Username" onChange={(e) => setUsername(e.target.value)}/>
         <input type='password' name='password' placeholder="Password" onChange={(e) => setPassword(e.target.value)}/>
-        <button onClick={logIn}>Log in</button>
+        {!loginSuccess && <button onClick={logIn}>Log in</button>}
       </div>
       }
       {loginSuccess &&
