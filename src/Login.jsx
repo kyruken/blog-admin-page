@@ -14,6 +14,9 @@ function Login() {
 
   const [token, setToken] = useState(JSON.parse(localStorage.getItem("token")) || null);
   const [loginSuccess, setLoginSuccess] = useState(JSON.parse(localStorage.getItem("loginSuccess")) || false);
+
+  const [title, setTitle] = useState('');
+  const [description, setDescription] = useState('');
   //-------------------- States --------------------//
   
   //-------------------- useEffects --------------------//
@@ -26,7 +29,7 @@ function Login() {
   useEffect(() => {
     fetch('http://localhost:3000/posts')
     .then(response => response.json())
-    .then(data => setBlogs(data.posts));
+    .then(data => setBlogs(data.posts.reverse()));
     
   }, [loginSuccess])
   //-------------------- useEffects --------------------//
@@ -47,6 +50,20 @@ function Login() {
   const logOut = () => {
     setLoginSuccess(null);
     localStorage.clear();
+  }
+
+  const sendNewBlog = () => {
+    axios({
+      method: "POST",
+      headers: {
+        Authorization: 'Bearer ' + JSON.parse(localStorage.getItem('token'))
+      },
+      data: {
+        title: title,
+        description: description
+      },
+      url: "http://localhost:3000/posts"
+    })
   }
   //-------------------- functions --------------------//
   
@@ -79,9 +96,9 @@ function Login() {
           <h1>Ibrablogs Admin Dashboard</h1>
           <button onClick={logOut}>Log out</button>
           <div>
-            <input type='text' name='title' placeholder='Title' />
-            <input type='text' name='body' placeholder='Body' />
-            <button>Submit Post</button>
+            <input type='text' name='title' placeholder='Title' onChange={(e) => setTitle(e.target.value)} />
+            <input type='text' name='description' placeholder='Body' onChange={(e) => setDescription(e.target.value)} />
+            <button onClick={sendNewBlog}>Submit Post</button>
           </div>
           <div className="grid grid-center blog-container padding-lr-5 padding-tb-1">{blogElements}</div>
         </div>
