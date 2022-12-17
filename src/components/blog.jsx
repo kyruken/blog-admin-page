@@ -3,6 +3,7 @@ import axios from 'axios';
 
 export default function Blog(props) {
     const [isPublished, setIsPublished] = useState(props.isPublished);
+    const [errorMsg, setErrorMsg] = useState(null);
 
     const publishBlog = (e) => {
         //e.preventDefault stops the Link component's onClick event
@@ -16,7 +17,10 @@ export default function Blog(props) {
               isPublished: !isPublished,
             },
             url: `http://localhost:3000/posts/${props.id}`
-          }).then(setIsPublished(prevState => !prevState));
+          }).then(res => {
+            setErrorMsg(false);
+            setIsPublished(prevState => !prevState);
+          },() => setErrorMsg(true));
         }
 
     return (
@@ -25,6 +29,7 @@ export default function Blog(props) {
             <p>{props.body}</p>
             <p>{props.timestamp}</p>
             <button onClick={(e) => publishBlog(e)}>{isPublished ? "Published" : "Not Published"}</button>
+            {errorMsg && <h4>Server error</h4>}
         </div>
     )
 }
