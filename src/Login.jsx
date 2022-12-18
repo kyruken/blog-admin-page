@@ -27,10 +27,13 @@ function Login() {
   }, [token])
 
   useEffect(() => {
-    fetch('http://localhost:3000/posts')
-    .then(response => response.json())
-    .then(data => setBlogs(data.posts.reverse()));
-    
+    axios({
+      method: "GET",
+      headers: {
+        Authorization: 'Bearer ' + JSON.parse(localStorage.getItem('token'))
+      },
+      url:'http://localhost:3000/posts'
+    }).then(res => setBlogs(res.data.posts));
   }, [loginSuccess])
   //-------------------- useEffects --------------------//
 
