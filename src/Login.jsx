@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import './App.css';
 import axios from 'axios';
+import jwt_decode from 'jwt-decode';
 
 import Blog from './components/blog';
 
@@ -20,6 +21,19 @@ function Login() {
   //-------------------- States --------------------//
   
   //-------------------- useEffects --------------------//
+  useEffect(() => {
+    //run a check if token has expired
+    if (JSON.parse(localStorage.getItem("token")) !== null) {
+      let currentDate = new Date();
+      const decodedToken = jwt_decode(JSON.parse(localStorage.getItem("token")));
+      if (decodedToken.exp * 1000 < currentDate.getTime()) {
+        //If expiration dates comes, we set login state and token to null
+        //This causes other useEffect to run, and sets our localStorage variables to null
+        setLoginSuccess(null);
+        setToken(null);
+      }
+    }
+  }, [])
   useEffect(() => {
     localStorage.setItem("loginSuccess", JSON.stringify(loginSuccess));
     localStorage.setItem("token", JSON.stringify(token))
